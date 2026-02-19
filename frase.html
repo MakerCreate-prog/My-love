@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presentacion de Cartita 💖</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Georgia,serif;
+  background:linear-gradient(-45deg,#ffd6ec,#ff9ecf,#ffc1e3);
+  background-size:400% 400%;
+  animation:fondo 12s ease infinite;
+  padding:15px;
+  overflow-x:hidden;
+}
+
+/* fondo */
+@keyframes fondo{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* CONTENEDOR */
+.contenedor{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:40px;
+  width:100%;
+  max-width:1100px;
+  flex-wrap:wrap; /* 🔥 clave */
+}
+
+/* IMÁGENES */
+.lado{
+  width:clamp(140px, 28vw, 220px);
+  display:flex;
+  justify-content:center;
+}
+
+.lado img{
+  width:100%;
+  height:clamp(180px, 32vw, 260px);
+  border-radius:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+  object-fit:cover;
+  animation:flotar 6s ease-in-out infinite;
+  transition:.4s;
+}
+
+.lado img:hover{
+  transform:scale(1.05);
+}
+
+@keyframes flotar{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+
+/* CORAZÓN */
+.corazon{
+ position:fixed;
+ top:15px;
+ right:15px;
+ font-size:clamp(22px,5vw,28px);
+ animation:latido 1.5s infinite;
+}
+
+@keyframes latido{
+ 0%,100%{transform:scale(1)}
+ 50%{transform:scale(1.25)}
+}
+
+/* CARTA */
+.carta{
+ width:100%;
+ max-width:650px;
+ background:rgba(255,255,255,.92);
+ padding:clamp(20px,5vw,45px);
+ border-radius:25px;
+ box-shadow:0 25px 60px rgba(0,0,0,.25);
+ text-align:center;
+ backdrop-filter:blur(10px);
+ position:relative;
+ animation:entrada 1.2s ease;
+}
+
+/* entrada */
+@keyframes entrada{
+ from{opacity:0; transform:translateY(30px)}
+ to{opacity:1; transform:translateY(0)}
+}
+
+/* brillo */
+.carta::before{
+ content:"";
+ position:absolute;
+ inset:0;
+ border-radius:25px;
+ background:linear-gradient(120deg,transparent,rgba(255,255,255,.3),transparent);
+ animation:shine 6s linear infinite;
+ pointer-events:none;
+}
+
+@keyframes shine{
+ 0%{transform:translateX(-100%)}
+ 100%{transform:translateX(100%)}
+}
+
+/* TEXTO */
+#texto{
+ min-height:160px;
+ white-space:pre-line;
+ font-size:clamp(14px,3.8vw,18px);
+ line-height:1.7;
+ color:#444;
+}
+
+/* BOTÓN */
+button{
+ margin-top:20px;
+ padding:12px 24px;
+ border:none;
+ border-radius:30px;
+ background:linear-gradient(90deg,#ff1493,#ff69b4,#ff1493);
+ background-size:200% auto;
+ color:white;
+ font-weight:bold;
+ cursor:pointer;
+ opacity:0;
+ transform:translateY(20px);
+ transition:.6s;
+ font-size:clamp(13px,3.5vw,16px);
+}
+
+button.visible{
+ opacity:1;
+ transform:translateY(0);
+ animation:brillo 3s linear infinite;
+}
+
+button:hover{
+ transform:scale(1.08);
+}
+
+@keyframes brillo{
+ to{background-position:200% center}
+}
+
+/* 📱 MOBILE FINO */
+@media(max-width:600px){
+  .contenedor{
+    gap:20px;
+  }
+
+  .lado{
+    width:45%;
+  }
+
+  .lado img{
+    height:150px;
+  }
+
+  .carta{
+    order:2; /* 🔥 carta abajo, imágenes arriba */
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="corazon">💖</div>
+
+<div class="contenedor">
+
+  <div class="lado">
+    <img src="imgs/preciosa3.jpg" alt="preciosa 3">
+  </div>
+
+  <div class="carta">
+    <div id="texto"></div>
+    <button id="btn" onclick="location.href='historia.html'">
+      Sigue leyendo 💕
+    </button>
+  </div>
+
+  <div class="lado">
+    <img src="imgs/preciosa4.jpg" alt="preciosa 4">
+  </div>
+
+</div>
+
+<script>
+const mensaje=`Moshitoooooooooooooooooo amoooooooooooooooooooooooooor
+mi vida hermosaaaaaaaaaaaaaaaaaaaaaaa otro mes amoooooooooooor
+
+Caiste en lo de la cartita? jajajajaj ojala y si 
+
+es una bromita hermosa, pa estar parches jajajaj preciosa
+pero bueno amor a lo que iba, todo este tiempo que pasamos juntos fue increible
+cosa que ya paso 9 meses amor, bueno 8 meses y 30 dias casi 9
+tamos un dia antes hermosa, pero es igual de especial si es junto a ti mi vida
+pasaremos este dia juntitos my love, concentrese en pasarla bonito
+se que esta conmigo pero con fe amor jajajaj "cara de aburrido" 
+no preciosa? digamelo de cerca pa besarla preciosa🌅💖`;
+
+let i=0;
+function escribir(){
+ if(i<mensaje.length){
+  document.getElementById("texto").innerHTML+=mensaje.charAt(i);
+  i++;
+  setTimeout(escribir,30);
+ }else{
+  document.getElementById("btn").classList.add("visible");
+ }
+}
+escribir();
+</script>
+
+</body>
+</html>

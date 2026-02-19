@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Código Secreto 💞</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+ height:100vh;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ font-family:Georgia,serif;
+ background:linear-gradient(-45deg,#ff9ecf,#ff69b4,#ff1493);
+ background-size:400% 400%;
+ animation:fondo 10s ease infinite;
+ color:white;
+ padding:15px;
+}
+
+/* fondo */
+@keyframes fondo{
+ 0%{background-position:0% 50%}
+ 50%{background-position:100% 50%}
+ 100%{background-position:0% 50%}
+}
+
+/* corazón */
+.corazon{
+ position:fixed;
+ top:15px;
+ right:15px;
+ font-size:clamp(20px,5vw,26px);
+ animation:latido 1.5s infinite;
+}
+
+@keyframes latido{
+ 0%,100%{transform:scale(1)}
+ 50%{transform:scale(1.2)}
+}
+
+/* CARTA */
+.carta{
+ width:100%;
+ max-width:420px;
+ padding:clamp(20px,5vw,35px);
+ background:rgba(255,255,255,.15);
+ border-radius:20px;
+ backdrop-filter:blur(15px);
+ text-align:center;
+ box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+/* TITULO */
+.carta h2{
+ font-size:clamp(16px,4.5vw,20px);
+ line-height:1.5;
+ margin-bottom:10px;
+}
+
+/* TEXTO */
+.carta p{
+ font-size:clamp(13px,3.8vw,16px);
+ opacity:.9;
+}
+
+/* INPUT */
+input{
+ margin-top:15px;
+ width:100%;
+ padding:12px;
+ border-radius:12px;
+ border:none;
+ text-align:center;
+ font-size:clamp(14px,4vw,16px);
+ outline:none;
+}
+
+/* BOTÓN */
+button{
+ margin-top:12px;
+ width:100%;
+ padding:12px;
+ border:none;
+ border-radius:25px;
+ background:white;
+ color:#ff1493;
+ font-weight:bold;
+ cursor:pointer;
+ transition:.3s;
+ font-size:clamp(14px,4vw,16px);
+}
+
+button:hover{
+ transform:scale(1.05);
+}
+
+/* 📱 MOBILE EXTRA */
+@media(max-width:400px){
+ .carta{
+   padding:18px;
+ }
+}
+</style>
+</head>
+<body>
+
+<div class="corazon">💖</div>
+
+<div class="carta">
+<h2>
+Si esto te gustó, adivina ahora 💞  
+Pista: si llegamos a esa fecha este año... se cumple un año de algo especial 👀
+</h2>
+
+<p>Ingresa el código secreto (fecha) 💌</p>
+
+<input type="password" id="codigo" placeholder="Código">
+
+<button onclick="verificar()">Desbloquear ✨</button>
+</div>
+
+<script>
+function verificar(){
+ if(document.getElementById("codigo").value==="5202025"){
+  location.href="secreto.html";
+ }else{
+  alert("Intenta otra vez, amorcito 💕");
+ }
+}
+</script>
+
+</body>
+</html>
